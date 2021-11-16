@@ -1,0 +1,124 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*link;
+};
+struct node * head=NULL,*cur,*temp,*temp1;
+
+struct node*create()
+{
+    int n;
+    printf("enter number of nodes");
+    scanf("%d",&n);
+    for (int i=0;i<n;i++)
+    {
+        cur = (struct node *) malloc(sizeof(struct node));
+        scanf("%d",&cur->data);
+        cur->link = NULL;
+    }
+    if(head == NULL)
+    {
+    head = cur;
+    }
+ else
+    {
+        temp = head;
+    }
+    while (temp->link!=NULL)
+    {
+        temp = temp->link;
+        temp->link = cur;
+    }
+        return head;
+}
+struct node *insert_begin(int ele)
+{
+    cur = (struct node *) malloc(sizeof(struct node));
+    cur->data = ele;
+    cur->link = head;
+    head = cur;
+    return head;
+
+}
+struct node *insert_end(int ele)
+{
+    cur = (struct node *) malloc(sizeof(struct node));
+    cur->data = ele;
+    cur->link = NULL;
+    temp = head;
+    while (temp->link!=NULL)
+    {
+        temp = temp->link;
+        temp->link = cur;
+    }
+ return head;
+
+}
+struct node *insert_pos(int ele,int pos)
+{
+    int c =1;
+    cur = (struct node *) malloc(sizeof(struct node));
+    cur->data = ele;
+    temp = head;
+    while(c<pos-1)
+    {
+        temp = temp->link;
+        c++;
+    }
+    cur->link = temp->link;
+    temp->link = cur;
+    return head;
+
+}
+struct node *delete_begin(struct node * head)
+{
+    temp = head;
+    printf("deleted element %d",temp->data);
+    free(temp);
+    return head;
+}
+
+void display(struct node * head)
+{
+    temp = head;
+    while (temp!=NULL)
+    {
+        printf("%d",temp->data);
+        temp = temp->link;
+    }
+    
+}
+int main()
+{
+    int ch,ele,pos;
+    while(1)
+    {
+        printf("1.create()\n 2.insert_begin(int ele)\n 3.insert_end(int ele)\n 4.insert_pos(int ele,int pos)\n 5.delete_begin(struct node * head)\n 6.display(struct node * head)\n");
+        printf("enter your choice");
+        scanf("%d",&ch);
+    }
+    switch(ch)
+    {
+    case 1:head = create();
+            break;
+    case 2:scanf("%d",&ele);
+            head = insert_begin(ele);
+            break;
+    case 3:scanf("%d",&ele);
+            head = insert_end(ele);
+            break;
+    case 4:printf("enter pos");
+            scanf("%d",&pos);
+            printf("enter ele");
+            scanf("%d",&ele);
+            head = insert_pos(ele,pos);
+    case 5:head = delete_begin(head);
+            break;
+    case 6:display (head);
+            break;
+    case 7:exit(0);
+    }
+
+}
