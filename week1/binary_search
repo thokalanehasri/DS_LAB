@@ -1,0 +1,45 @@
+#include <stdio.h>
+int binary_search(int arr[],int low,int high,int x)
+{
+    while(low<=high)
+    {
+        int mid =(low + high)/2;
+        if(arr[mid] == x)
+            return mid;
+        if(arr[mid]<x)
+            low = mid+1;
+        else
+            high = mid-1;
+    }
+    return -1;
+}
+int main()
+{
+    int a[10],n,x,result;
+    printf("enter the total number of elements");
+    scanf("%d",&n);
+    printf("enter the array elements in sorted order");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("enter the search element");
+    scanf("%d",&x);
+    result = binary_search(a,0,n-1,x);
+    if(result == -1)
+    printf("element is not present in array");
+    else 
+    printf("element is present at index %d",result);
+}
+output:
+enter the total number of elements
+10
+enter the array elements in sorted order
+2,17,23,34,56,61,78,84,91,98
+enter the search elementelement is present at index 9
+
+enter the total number of elements
+5
+enter the array elements in sorted order
+2,10,72,28,41,72
+enter the search elementelement is not present in array
