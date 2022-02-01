@@ -1,0 +1,53 @@
+#include<stdio.h>
+void selection_sort(int a[],int n)
+{
+    int i,j,min,x;
+    for(i=0;i<n-1;i++)
+    {
+        min = i;
+        
+        for(j=0;j<n;j++)
+        {
+            if(a[j]>a[min])
+            {
+                min = j;
+            }
+        }
+
+        x=a[min];
+        a[min] = a[i];
+        a[i] = x;
+    }
+}
+int main()
+{
+    int n,i;
+    printf("enter the size\n");
+    scanf("%d",&n);
+    int a[n];
+    printf("\nenter the array elements\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    selection_sort(a,n);
+    printf("\nafter sort \n");
+    for(i=0;i<n;i++){
+        printf("\n%d",a[i]);
+    }
+    
+}
+output:
+enter the size
+3
+
+enter the array elements
+88
+27
+12
+
+after sort 
+
+27
+88
+12
